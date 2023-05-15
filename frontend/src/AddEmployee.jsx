@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
@@ -5,12 +6,23 @@ function AddEmployee() {
     const [data, setData] = useState({
         email: '',
         password: '',
-        address: '',
-        image: ''
+        address: ''
     })
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        const fromdata = new FormData();
+        fromdata.append("name",data.email);
+        fromdata.append("name",data.password);
+        fromdata.append("name",data,address);
+        fromdata.append("name",data);
+        fromdata.append("name",data);
+        fromdata.append("name",data);
+        fromdata.append("name",data);
+        fromdata.append("name",data);
+        fromdata.append("name",data);
+        axios.post('localhost:8080/api/employees/add',fromdata)
+        .then
     }
 
     return (
@@ -34,11 +46,6 @@ function AddEmployee() {
                     <input type='text' className='form-control' id='inputAddress' placeholder='Enter Address'
                         autoComplete='off'
                         onChange={e => setData({ ...data, address: e.target.value })} />
-                </div>
-                <div className="col-12 mb-3">
-                    <label htmlFor="inputGroupFile01" className='form-label'>Select Image</label>
-                    <input type='file' className='form-control' id='inputGroupFile01'
-                        onChange={e => setData({ ...data, image: e.target.files[0] })} />
                 </div>
                 <div className="col-12">
                     <Link to='/create'><button className="btn btn-primary">Create</button></Link>
