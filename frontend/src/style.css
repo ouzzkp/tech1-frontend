@@ -2,3 +2,17 @@
     background: url('./assets/loginBg.jpg') no-repeat center  fixed;
     background-size: 100% 120%;
 }
+.centered {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+  }
+  .container {
+    background-color: #f2f2f2;
+    padding: 20px;
+    border: 1px solid #ccc;
+    width: fit-content;
+  }

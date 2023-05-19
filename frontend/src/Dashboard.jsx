@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import 'bootstrap-icons/font/bootstrap-icons.css'
 import { Link, Outlet } from 'react-router-dom'
 
-function Dashboard() {
+function Dashboard({user}) {
 
     return (
         <div className="container-fluid">
@@ -41,7 +41,8 @@ function Dashboard() {
                 <div className="col p-0 m-0 py-3  align-items-center">
 
                     <div className='p-2 d-flex justify-content-center shadow'>
-                        <h4>Tech-1 Employee Managemet System</h4>
+                        <h3>Tech-1 Employee Managemet System</h3>
+                        <h4>Welcome to system</h4>
 
                     </div>
                     <Outlet />
