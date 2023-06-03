@@ -2,7 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
 import './style.css'
+<<<<<<< HEAD
 
+=======
+import Login from './Login';
+>>>>>>> main
 function Profile() {
 
   const token = useSelector((state)=> state.token);
@@ -37,7 +41,11 @@ function Profile() {
       <h1>Profile</h1>
     <main className="centered">
       <div className="container">
+<<<<<<< HEAD
         <h4>Name:</h4>
+=======
+        <h4>Name: {user}</h4>
+>>>>>>> main
         <h4>Surname: Otto</h4>
         <h4>Job Title: $XXX</h4>
         <h4>Department: Admin</h4>
