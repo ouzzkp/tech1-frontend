@@ -2,74 +2,69 @@ import React, { useState } from 'react';
 import './style.css'
 import { Navigate, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { setToken } from './actions';
+import { setToken } from './Redux/Action';
 
 function Login() {
-    /* 
-        const [values, setValues] = useState({
-            email: '', // set initial state
-            password: ''
-        }) */
+    const dispatch = useDispatch();
 
-        const [email, setEmail] = useState('');
-        const [password, setPassword] = useState('');
-        const [navigate, setNavigate] = useState(false);
-
-
-
-
-    const [error, setError] = useState('')
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [navigate, setNavigate] = useState(false);
+    const [error, setError] = useState('');
 
     const handleLogin = async (e) => {
         e.preventDefault();
-    
-        const data = {
-          email: email,
-          password: password
-        };
-    
-        try {
-          const response = await fetch('http://localhost:8080/hr/api/auth/login', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-          });
-    
-          if (response.ok) {
-            const responseData = await response.json();
-            const token = responseData.token;
-            console.log(responseData)
-            console.log('Başarılı giriş!');
-            console.log(data)
-            setNavigate(true)
-          } else {
-            console.log('Giriş başarısız!');
-          }
-        } catch (error) {
-          console.error('İstek hatası:', error);
-        }
-      };
-    
 
-    if(navigate){
-        return <Navigate to="/"/>
+        const data = {
+            email: email,
+            password: password
+        };
+
+        try {
+            const response = await fetch('http://localhost:8080/hr/api/auth/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            });
+
+            if (response.ok) {
+                const responseData = await response.json();
+                const token = responseData.token;
+                const userID = responseData.id;
+                console.log(responseData)
+                setNavigate(true)
+
+                dispatch(setToken(token)); 
+               // dispatch(setUserID(userID));
+
+            } else {
+                console.log('Giriş başarısız!');
+            }
+        } catch (error) {
+            console.error('İstek hatası:', error);
+        }
+    };
+
+
+    if (navigate) {
+        return <Navigate to="/" />
     }
 
 
-   /*  const handleSubmit = (event) => {
-        event.preventDefault()
-        axios.post('http://localhost:8080/hr/api/auth/login', {email,password})
-            .then(res => {
-                if (res.data.Status === 'Success') { // login başarılı
-                    navigate('/')
-                } else {
-                    setError(res.data.Error)
-                }
-            })
-            .catch(err => console.log(err))
-    } */
+    /*  const handleSubmit = (event) => {
+         event.preventDefault()
+         axios.post('http://localhost:8080/hr/api/auth/login', {email,password})
+             .then(res => {
+                 if (res.data.Status === 'Success') { // login başarılı
+                     navigate('/')
+                 } else {
+                     setError(res.data.Error)
+                 }
+             })
+             .catch(err => console.log(err))
+     } */
 
     return (
         <div className=' d-flex justify-content-center align-items-center vh-100 loginPage'>
@@ -86,7 +81,7 @@ function Login() {
                     <div className="card-body py-5 px-md-5 h6 ls-tight">
                         <form onSubmit={handleLogin}>
                             <div className="form-outline mb-4">
-                                <input 
+                                <input
                                     type="email"
                                     placeholder='Type the email...'
                                     id="form3Example3"
@@ -97,10 +92,10 @@ function Login() {
                                 <label className="form-label" htmlFor="form3Example3">Email address</label>
                             </div>
                             <div className="form-outline mb-4">
-                                <input 
+                                <input
                                     type="password"
                                     placeholder='Type the password...'
-                                    id="form3Example4" 
+                                    id="form3Example4"
                                     className="form-control"
                                     value={password}
                                     onChange={e => setPassword(e.target.value)}

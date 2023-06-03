@@ -1,9 +1,16 @@
 import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import axios from 'axios';
 import './style.css'
-import Login from './Login';
+
 function Profile() {
-  const [user, setUser] = useState(null);
+
+  const token = useSelector((state)=> state.token);
+  const userID = useSelector((state) => state.userID);
+
+  console.log(token)
+
+  /* const [user, setUser] = useState(null);
   useEffect(() => {
     const fetchUser = async () => {
       try {
@@ -23,14 +30,14 @@ function Profile() {
     };
 
     fetchUser();
-  }, []); 
+  }, []);  */
 
   return (
     <div>
       <h1>Profile</h1>
     <main className="centered">
       <div className="container">
-        <h4>Name: {user}</h4>
+        <h4>Name:</h4>
         <h4>Surname: Otto</h4>
         <h4>Job Title: $XXX</h4>
         <h4>Department: Admin</h4>
