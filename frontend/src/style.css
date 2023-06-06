@@ -16,3 +16,58 @@
     border: 1px solid #ccc;
     width: fit-content;
   }
+  .profile-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.profile-page {
+    display: flex;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    width: 80%;
+    box-shadow: 0px 0px 20px rgba(0,0,0,0.1);
+}
+
+.profile-image-section {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    border-right: 1px solid #ccc;
+}
+
+.profile-image {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.profile-info-section {
+    flex: 2;
+    padding: 20px;
+}
+
+.profile-name {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.profile-email {
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.profile-department {
+    color: #999;
+    margin-bottom: 20px;
+}
+
+.profile-bio {
+    color: #666;
+    line-height: 1.5;
+}
