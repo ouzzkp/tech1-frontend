@@ -27,12 +27,12 @@ export const userIDReducer = (state = null, action) => {
 
 
 // initial state
-const initialState = {
-  isLoggedIn: false,
-};
+const isLoggedIn = false;
+const role = null;
+ 
 
 // reducer
-export const authReducer = (state = initialState, action) => {
+export const authReducer = (state = isLoggedIn, action) => {
   switch (action.type) {
     case 'LOGIN':
       return {
@@ -48,3 +48,15 @@ export const authReducer = (state = initialState, action) => {
       return state;
   }
 };
+
+export const roleReducer = (state = role, action) => {
+  switch (action.type) {
+    case 'SET_ROLE':
+      return {
+        ...state,
+        role: action.payload
+      }
+    default:
+      return state;
+  }
+}

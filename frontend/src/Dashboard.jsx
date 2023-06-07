@@ -1,19 +1,21 @@
 import React, { Component, useEffect } from 'react'
 import 'bootstrap-icons/font/bootstrap-icons.css'
-import { Link, Outlet, useNavigate } from 'react-router-dom'
+import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { logout } from './Redux/Action';
 
 const Dashboard = () => {
 
-    const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
-     console.log(isLoggedIn)
+
+    const userRole = useSelector((state) => state.role);
+    console.log(userRole)
     const handleLogout = () => {
         localStorage.removeItem('persist:root');
         const dispatch = useDispatch();
         dispatch(logout());
-      };
+
+    };
     return (
         <div className="container-fluid">
             <div className="row flex-nowrap">
@@ -30,7 +32,7 @@ const Dashboard = () => {
 
                             </li>
                             <li>
-                                <Link to='employee' data-bs-toggle="collapse" className="nav-link px-0 align-middle ">
+                                <Link to='manageemployee' data-bs-toggle="collapse" className="nav-link px-0 align-middle ">
                                     <i className="fs-4 bi-people"></i> <span className="ms-1 d-none d-sm-inline">Manage Employees</span></Link>
 
                             </li>
@@ -52,8 +54,6 @@ const Dashboard = () => {
 
                     <div className='p-2 d-flex justify-content-center shadow'>
                         <h3>Tech-1 Employee Managemet System</h3>
-                        <h4>Welcome to system</h4>
-
                     </div>
                     <Outlet />
                 </div>
