@@ -14,27 +14,29 @@ import ManageEmployee from './ManageEmployee'
 
 function App() {
   const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
+   const role = useSelector(state => state.role.role);
+  const userRole = JSON.stringify(role)
+  console.log("adamın rolü: " + userRole) 
   const dispatch = useDispatch();
-
   useEffect(() => {
     const handlePopState = () => {
       if (isLoggedIn && window.location.pathname === '/login') {
-        
+
         localStorage.removeItem('persist:root');
         dispatch(logout());
         window.location.href = '/login';
       }
     };
-  
+
     const handleNavigate = () => {
       if (!isLoggedIn && window.location.pathname !== '/login') {
         window.location.href = '/login';
       }
     };
-  
+
     window.addEventListener('popstate', handlePopState);
     window.addEventListener('navigate', handleNavigate);
-  
+
     return () => {
       window.removeEventListener('popstate', handlePopState);
       window.removeEventListener('navigate', handleNavigate);
@@ -44,14 +46,19 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-      <Route path="/login" element={<Login />} />
-        <Route path="/" element={isLoggedIn ? <Dashboard /> : <Navigate to="/login" />}>
+        <Route path="/login" element={<Login />} />
+        <Route path="/" element={isLoggedIn ? <Dashboard  userRole={userRole}  /> : <Navigate to="/login" />}>
           <Route path="" element={<Home />} />
           <Route path="/employee" element={<Employee />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/home" element={<Home />} />
-          <Route path="/manageemployee" element={<ManageEmployee />} />
+         {userRole === '"ADMIN"' && ( 
+            <Route path="/manageemployee" element={<ManageEmployee />} />
+         )}
+         {userRole === '"ADMIN"' && ( 
           <Route path="/create" element={<AddEmployee />} />
+         )}
+
         </Route>
       </Routes>
     </BrowserRouter>
