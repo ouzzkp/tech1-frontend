@@ -10,12 +10,15 @@ const Dashboard = () => {
 
     const userRole = useSelector((state) => state.role);
     console.log(userRole)
+    
     const handleLogout = () => {
         localStorage.removeItem('persist:root');
         const dispatch = useDispatch();
         dispatch(logout());
 
     };
+    
+      
     return (
         <div className="container-fluid">
             <div className="row flex-nowrap">
