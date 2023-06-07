@@ -7,12 +7,12 @@ import { logout } from './Redux/Action';
 
 const Dashboard = () => {
 
-    const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
-     console.log(isLoggedIn)
+    
     const handleLogout = () => {
         localStorage.removeItem('persist:root');
         const dispatch = useDispatch();
         dispatch(logout());
+    
       };
     return (
         <div className="container-fluid">

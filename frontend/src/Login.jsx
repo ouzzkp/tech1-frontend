@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './style.css'
 import { Navigate, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { login, setToken, setUserID } from './Redux/Action';
+import { login, setRole, setToken, setUserID } from './Redux/Action';
 
 function Login() {
 
@@ -37,16 +37,15 @@ function Login() {
                 const responseData = await response.json();
                 const token = responseData.token;
                 const userID = responseData.id;
-                const loginProc = responseData.success;
+                const userRole = responseData.role;
                 console.log(responseData)
                 console.log(userID)
                 setNavigate(true)
                 console.log(responseData.success)
                 dispatch(setToken(token)); 
                 dispatch(setUserID(userID));
+                dispatch(setRole(userRole))
                 dispatch(login());
-                
-
             } else {
                 console.log('Giriş başarısız!');
             }

@@ -4,12 +4,13 @@ import {combineReducers } from 'redux';
 import { legacy_createStore as createStore} from 'redux'
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-import { tokenReducer, userIDReducer, authReducer } from './Reducers';
+import { tokenReducer, userIDReducer, authReducer, roleReducer, } from './Reducers';
 
 const rootReducer = combineReducers({
   token: tokenReducer,
   userID: userIDReducer,
-  auth: authReducer
+  auth: authReducer,
+  role: roleReducer
 });
 
 const persistConfig = {
