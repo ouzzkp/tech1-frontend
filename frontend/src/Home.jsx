@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useSelector } from 'react-redux';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 function Home() {
+
+   
+
     const [employees, setEmployees] = useState([]);
     const [managers, setManagers] = useState([]);
     const [totalSalary, setTotalSalary] = useState(0);
    
-
     useEffect(() => {
         axios.get('http://localhost:8080/hr/api/employees/getall')
             .then(response => {

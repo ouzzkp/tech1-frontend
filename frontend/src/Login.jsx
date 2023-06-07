@@ -1,18 +1,22 @@
 import React, { useState } from 'react';
 import './style.css'
 import { Navigate, useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { setToken } from './Redux/Action';
+import { useDispatch, useSelector } from 'react-redux';
+import { login, setToken, setUserID } from './Redux/Action';
 
 function Login() {
-    const dispatch = useDispatch();
 
+    
+    
+    const dispatch = useDispatch();
+    
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [navigate, setNavigate] = useState(false);
     const [error, setError] = useState('');
 
     const handleLogin = async (e) => {
+
         e.preventDefault();
 
         const data = {
@@ -33,11 +37,15 @@ function Login() {
                 const responseData = await response.json();
                 const token = responseData.token;
                 const userID = responseData.id;
+                const loginProc = responseData.success;
                 console.log(responseData)
+                console.log(userID)
                 setNavigate(true)
-
+                console.log(responseData.success)
                 dispatch(setToken(token)); 
-               // dispatch(setUserID(userID));
+                dispatch(setUserID(userID));
+                dispatch(login());
+                
 
             } else {
                 console.log('Giriş başarısız!');
