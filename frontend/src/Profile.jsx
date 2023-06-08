@@ -15,11 +15,6 @@ function Profile() {
             Authorization: `Bearer ${token}`
           }
         });
-
-        console.log('User id:', userID);
-        console.log('User token:', token);
-        console.log('Response:', response.data);
-        
         const information = JSON.stringify(response.data.data)
         setUserProfile(JSON.parse(information))
       } catch (error) {

@@ -6,10 +6,10 @@ import { useNavigate } from 'react-router-dom';
 
 function UpdateEmployee() {
     const selectedEmployeesID = useSelector(state => state.selectedEmployeeId);
-  const navigate = useNavigate()
+    const navigate = useNavigate()
     const dispatch = useDispatch();
-  const employees = useSelector(state => state.employee);
- 
+    const employees = useSelector(state => state.employee);
+
 
     const [updatedData, setUpdatedData] = useState({
         firstName: '',
@@ -68,8 +68,8 @@ function UpdateEmployee() {
         e.preventDefault();
         dispatch(updateEmployee(selectedEmployeesID, updatedData));
         navigate('/manageEmployee');
-      };
-    
+    };
+
     return (
         <div className="d-felx flex-column align-items-center ps-5 pt-5">
             <h2 className="text-center">Sample Form</h2>
@@ -81,8 +81,6 @@ function UpdateEmployee() {
                             <input type="text" className='form-control' name="firstName" value={updatedData.firstName} onChange={handleInputChange} />
                         </div>
                     </div>
-
-
                     <div className="form-group">
                         <label className="control-label col-sm-4">Employee Surname</label>
                         <div className="col-sm-8">
@@ -91,7 +89,6 @@ function UpdateEmployee() {
                         </div>
                     </div>
                 </div>
-
                 <div className="col-sm-6">
                     <div className="form-group">
                         <label className="control-label col-sm-4">Employee Email</label>
@@ -99,7 +96,6 @@ function UpdateEmployee() {
                             <input type="email" className='form-control' name="emailAddress" value={updatedData.emailAddress} onChange={handleInputChange} />
                         </div>
                     </div>
-
                     <div className="form-group">
                         <label className="control-label col-sm-4">Employee Mobile</label>
                         <div className="col-sm-8">
@@ -107,7 +103,6 @@ function UpdateEmployee() {
                         </div>
                     </div>
                 </div>
-
                 <div className="col-sm-12">
                     <div className="form-group">
                         <label className="control-label col-sm-2">Employee Address</label>
@@ -116,8 +111,6 @@ function UpdateEmployee() {
                         </div>
                     </div>
                 </div>
-
-
                 <div className="col-sm-6">
                     <div className="form-group">
                         <label className="col-sm-4 control-label">Employee Salary</label>
@@ -126,7 +119,6 @@ function UpdateEmployee() {
                         </div>
                     </div>
                 </div>
-
                 <div className="col-sm-6">
                     <div className="form-group">
                         <label className="col-sm-4 control-label">Employee Job Title</label>
