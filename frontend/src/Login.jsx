@@ -1,29 +1,23 @@
 import React, { useState } from 'react';
 import './style.css'
-import { Navigate, useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { Navigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { login, setRole, setToken, setUserID } from './Redux/Action';
 
 function Login() {
 
-    
-    const userRole = JSON.stringify(useSelector((state) => state.role.role));
     const dispatch = useDispatch();
-    
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [navigate, setNavigate] = useState(false);
     const [error, setError] = useState('');
 
     const handleLogin = async (e) => {
-
         e.preventDefault();
-
         const data = {
             email: email,
             password: password
         };
-
         try {
             const response = await fetch('http://localhost:8080/hr/api/auth/login', {
                 method: 'POST',
@@ -38,10 +32,7 @@ function Login() {
                 const token = responseData.token;
                 const userID = responseData.id;
                 const userRole = responseData.role;
-                console.log(responseData)
-                console.log(userID)
                 setNavigate(true)
-                console.log(responseData.success)
                 dispatch(setToken(token)); 
                 dispatch(setUserID(userID));
                 dispatch(setRole(userRole))
@@ -54,12 +45,9 @@ function Login() {
         }
     };
 
-
     if (navigate) {
         return <Navigate to="/" />
     } 
-
-
 
     return (
         <div className=' d-flex justify-content-center align-items-center vh-100 loginPage'>

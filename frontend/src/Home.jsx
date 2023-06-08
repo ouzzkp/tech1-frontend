@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useDispatch, useSelector } from 'react-redux';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { setEmployeess } from './Redux/Action';
 
 function Home() {
 
     const dispatch = useDispatch()
-
     const [employees, setEmployees] = useState([]);
     const [managers, setManagers] = useState([]);
     const [totalSalary, setTotalSalary] = useState(0);
@@ -30,9 +28,6 @@ function Home() {
         const total = employees.reduce((sum, employee) => sum + employee.salary, 0);
         setTotalSalary(total);
     }, [employees]);
-
-
-
 
     return (
         <div>
@@ -67,8 +62,6 @@ function Home() {
                     </div>
                 </div>
             </div>
-
-            {/*List of admid*/}
             <div className='mt-4 pt-3 px-5'>
                 <h3>List of Managers</h3>
                 <table className="table">
@@ -94,8 +87,6 @@ function Home() {
 
             </div>
         </div>
-
-
     )
 }
 

@@ -1,7 +1,6 @@
 
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { MDBBadge, MDBTable, MDBTableHead, MDBTableBody } from 'mdb-react-ui-kit'
 
@@ -27,7 +26,6 @@ const CoEmployee = () => {
                     <th scope='col'>Title</th>
                     <th scope='col'>Status</th>
                     <th scope='col'>Manager</th>
-                   
                 </tr>
             </MDBTableHead>
             <MDBTableBody>
@@ -57,15 +55,10 @@ const CoEmployee = () => {
                             </MDBBadge>
                         </td>
                         <td>{employee.manager.firstName} {employee.manager.lastName}</td>
-
                     </tr>
                 ))}
             </MDBTableBody>
-
         </MDBTable>
-
-
-
     );
 };
 

@@ -5,7 +5,7 @@ import Home from './Home'
 import Profile from './Profile'
 import { BrowserRouter, Routes, Route, Router, useNavigate, Navigate } from 'react-router-dom'
 import AddEmployee from './AddEmployee'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { logout } from './Redux/Action';
 import ManageEmployee from './ManageEmployee'
