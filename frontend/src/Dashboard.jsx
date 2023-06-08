@@ -37,7 +37,7 @@ const Dashboard = ({ userRole }) => {
                             </li>
                             {userRole === '"ADMIN"' ? (
                                 <li>
-                                    <Link to="manageemployee" data-bs-toggle="collapse" className="nav-link px-0 align-middle ">
+                                    <Link to="manage-employee" data-bs-toggle="collapse" className="nav-link px-0 align-middle ">
                                         <i className="fs-4 bi-people"></i> <span className="ms-1 d-none d-sm-inline">Manage Employees</span>
                                     </Link>
                                 </li>
@@ -51,7 +51,7 @@ const Dashboard = ({ userRole }) => {
                             {userRole === '"ADMIN"' && (
                                 <li>
                                     <Link to="add-employee" data-bs-toggle="collapse" className="nav-link px-0 align-middle ">
-                                        <i className="fs-4 bi-person-add"></i> <span className="ms-1 d-none d-sm-inline">Add Employees</span>
+                                        <i className="fs-4 bi-person-add"></i> <span className="ms-1 d-none d-sm-inline">Add Employee</span>
                                     </Link>
                                 </li>
                             )}

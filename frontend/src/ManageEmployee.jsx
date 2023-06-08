@@ -32,7 +32,7 @@ const ManageEmployee = () => {
     const transferedEmployee = JSON.stringify(selectedEmployee);
     console.log("Seçilmiş kullanıcı id: "+ employeeID)
     dispatch(setSelectedEmployeeId(employeeID));
-    navigate(`/updateemployee/`);
+    navigate(`/update-employee/`);
   };
 
   return (
