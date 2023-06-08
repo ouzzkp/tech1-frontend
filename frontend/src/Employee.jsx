@@ -23,7 +23,7 @@ const Employee = () => {
       <h1>Employee List</h1>
       {employees.map(employee => (
         <div key={employee.id}>
-          <h2>{employee.firstName} {employee.lastName}</h2>
+          <h2>Name: {employee.firstName} {employee.lastName}</h2>
           <p>Email: {employee.emailAddress}</p>
           <p>Job Title: {employee.jobTitle}</p>
           <p>Salary: {employee.salary}</p>
