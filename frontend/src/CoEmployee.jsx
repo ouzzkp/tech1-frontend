@@ -1,42 +1,26 @@
+
 import React, { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { MDBBadge, MDBTable, MDBTableHead, MDBTableBody } from 'mdb-react-ui-kit';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
-import { setEmployeess, setSelectedEmployeeId } from './Redux/Action';
+import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { MDBBadge, MDBTable, MDBTableHead, MDBTableBody } from 'mdb-react-ui-kit'
 
-const ManageEmployee = () => {
-  const dispatch = useDispatch();
-  const [employees, setEmployees] = useState([]);
-  const [ selectedEmployee, setSelectedEmployee ] = useState()
-  const navigate = useNavigate();
-  
+const CoEmployee = () => {
+    const [employees, setEmployees] = useState([]);
+    const userID = useSelector((state) => state.userID);
+    useEffect(() => {
+        axios.get(`http://localhost:8080/hr/api/employees/getcoworkers?id=1`)
+            .then(response => {
+                setEmployees(response.data.data);
+                console.log(response.data.data)
+            })
+            .catch(error => {
+                console.error('Error fetching employee data:', error);
+            });
+    }, []);
 
-
-  useEffect(() => {
-    // API'den verileri alma
-    axios.get('http://localhost:8080/hr/api/employees/getall')
-      .then(response => {
-        // API'den dönen verileri state'e güncelleme
-        setEmployees(response.data.data);
-      })
-      .catch(error => {
-        console.error('Error fetching employee data:', error);
-      });
-  }, [dispatch]);
-
-  const handleEditEmployee = (employeeID) => {
-    const selectedEmployee = employees.find(employee => employee.id === employeeID);
-    console.log("Selected Employee: "+ JSON.stringify(selectedEmployee))
-    setSelectedEmployee(selectedEmployee);
-    const transferedEmployee = JSON.stringify(selectedEmployee);
-    console.log("Seçilmiş kullanıcı id: "+ employeeID)
-    dispatch(setSelectedEmployeeId(employeeID));
-    navigate(`/updateemployee/`);
-  };
-
-  return (
-    <MDBTable striped align='middle'>
+    return (
+        <MDBTable striped align='middle'>
             <MDBTableHead>
                 <tr>
                     <th scope='col'>Name</th>
@@ -73,16 +57,19 @@ const ManageEmployee = () => {
                             </MDBBadge>
                         </td>
                         <td>{employee.manager.firstName} {employee.manager.lastName}</td>
-                        <td>
 
-                        <button className='btn btn-primary' onClick={() => handleEditEmployee(employee.id)}>Edit</button>
-                            <button className="btn btn-danger" type="submit">Delete</button>
-                        </td>
                     </tr>
                 ))}
             </MDBTableBody>
 
         </MDBTable>
-  );
+
+
+
+    );
 };
-export default ManageEmployee;
+
+export default CoEmployee;
+
+
+

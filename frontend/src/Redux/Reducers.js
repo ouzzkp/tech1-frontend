@@ -24,12 +24,33 @@ export const userIDReducer = (state = null, action) => {
   }
 };
 
+const employees = []
+
+
+export const employeeReducer = (state = [], action) => {
+  switch (action.type) {
+    case 'SET_EMPLOYEES':
+      return action.payload;
+    
+    default:
+      return state;
+  }
+}
 
 
 // initial state
 const isLoggedIn = false;
 const role = null;
- 
+export const selectedEmployeeIdReducer = (state = null, action) => {
+  switch (action.type) {
+    case "SET_SELECTED_EMPLOYEES_ID":
+      
+      return action.payload;
+  
+    default:
+      return state;
+  }
+}
 
 // reducer
 export const authReducer = (state = isLoggedIn, action) => {

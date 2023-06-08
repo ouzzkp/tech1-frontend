@@ -1,34 +1,31 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Navigate, useNavigate } from 'react-router-dom';
+import { setEmployeess } from './Redux/Action';
 
 function Home() {
 
-   
+    const dispatch = useDispatch()
 
     const [employees, setEmployees] = useState([]);
     const [managers, setManagers] = useState([]);
     const [totalSalary, setTotalSalary] = useState(0);
-   
+
     useEffect(() => {
         axios.get('http://localhost:8080/hr/api/employees/getall')
             .then(response => {
                 setEmployees(response.data.data);
+
+                setManagers(response.data.data);
+                console.log(response.data.data)
+                dispatch(setEmployeess(response.data.data));
             })
             .catch(error => {
                 console.error('Error fetching employee data:', error);
             });
     }, []);
-    useEffect(() => {
-        axios.get('http://localhost:8080/hr/api/managers/getall')
-            .then(response => {
-                setManagers(response.data.data);
-            })
-            .catch(error => {
-                console.error('Error fetching managers data:', error);
-            });
-    }, []);
+
     useEffect(() => {
         const total = employees.reduce((sum, employee) => sum + employee.salary, 0);
         setTotalSalary(total);
@@ -83,9 +80,9 @@ function Home() {
                         </tr>
                     </thead>
                     <tbody>
-                        {employees.map((employee,index) => (
+                        {employees.map((employee, index) => (
                             <tr key={employee.id}>
-                                <th scope="row">{index+1}</th>
+                                <th scope="row">{index + 1}</th>
                                 <td>{employee.manager.firstName}</td>
                                 <td>{employee.manager.lastName}</td>
                             </tr>
@@ -94,10 +91,10 @@ function Home() {
                 </table>
             </div>
             <div>
-     
-    </div>
+
+            </div>
         </div>
-        
+
 
     )
 }

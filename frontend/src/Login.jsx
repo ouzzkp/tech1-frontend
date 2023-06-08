@@ -7,7 +7,7 @@ import { login, setRole, setToken, setUserID } from './Redux/Action';
 function Login() {
 
     
-    
+    const userRole = JSON.stringify(useSelector((state) => state.role.role));
     const dispatch = useDispatch();
     
     const [email, setEmail] = useState('');
@@ -57,21 +57,9 @@ function Login() {
 
     if (navigate) {
         return <Navigate to="/" />
-    }
+    } 
 
 
-    /*  const handleSubmit = (event) => {
-         event.preventDefault()
-         axios.post('http://localhost:8080/hr/api/auth/login', {email,password})
-             .then(res => {
-                 if (res.data.Status === 'Success') { // login başarılı
-                     navigate('/')
-                 } else {
-                     setError(res.data.Error)
-                 }
-             })
-             .catch(err => console.log(err))
-     } */
 
     return (
         <div className=' d-flex justify-content-center align-items-center vh-100 loginPage'>
