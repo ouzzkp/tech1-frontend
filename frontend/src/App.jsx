@@ -16,7 +16,6 @@ function App() {
   const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
    const role = useSelector(state => state.role.role);
   const userRole = JSON.stringify(role)
-  console.log("adamın rolü: " + userRole) 
   const dispatch = useDispatch();
   useEffect(() => {
     const handlePopState = () => {
