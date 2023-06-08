@@ -27,7 +27,7 @@ const Employee = () => {
           <p>Email: {employee.emailAddress}</p>
           <p>Job Title: {employee.jobTitle}</p>
           <p>Salary: {employee.salary}</p>
-          <p>Mobile Phone: {employee.mobilePhone}</p>
+          <p>Mobile Phone: +{employee.mobilePhone}</p>
           <p>Address: {employee.address}</p>
           <p>Birth Date: {employee.birthDate}</p>
           <p>Hire Date: {employee.hireDate}</p>
