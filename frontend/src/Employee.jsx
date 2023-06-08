@@ -36,7 +36,7 @@ const Employee = () => {
           <p>Department: {employee.department.name}</p>
         </div>
       ))}
-       <Link to='/create'><button className="btn btn-success">Add Employee</button></Link>
+       <Link to='/create'><button className="btn btn-warning">Add Employee</button></Link>
 
     </div>
   );
