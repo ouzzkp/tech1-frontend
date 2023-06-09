@@ -21,6 +21,7 @@ const ManageEmployee = () => {
     }, [dispatch]);
 
     const handleEditEmployee = (employeeID) => {
+        const selectedEmployee = employees.find(employee => employee.id === employeeID);
         dispatch(setSelectedEmployeeId(employeeID));
         navigate(`/update-employee/`);
     };
